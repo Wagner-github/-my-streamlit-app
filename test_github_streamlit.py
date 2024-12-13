@@ -26,7 +26,7 @@ if not data.empty:
 else:
     st.error("Aucune donnée disponible.")
     
-"""
+
 
 
 import yfinance as yf
@@ -48,3 +48,28 @@ plt.plot(data['Close'], label='Prix de clôture')
 
 # Affichage dans Streamlit
 st.pyplot(plt)
+"""
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+# Téléchargement des données historiques pour TotalEnergies
+Total = yf.Ticker("TTE.PA")
+
+# Création du DataFrame
+df = Total.history(start="2000-01-01")
+df = df.drop(columns=["Dividends", "Stock Splits"])
+
+
+# Calcul du pourcentage de valeurs manquantes
+for col in df.columns:
+    percent_missing = np.mean(df[col].isnull())
+
+# Afficher le graphique de prix de clôture
+st.line_chart(data['Close'])
+
+df['Close'].plot(figsize=(10, 6), title='Évolution du prix de clôture')
+plt.ylabel('Prix de clôture (€)')
+plt.xlabel('Date')
+plt.grid()
+plt.show()

@@ -19,7 +19,7 @@ plt.plot(data['Close'], label='Prix de clôture')
 
 # Affichage dans Streamlit
 st.pyplot(plt)
-"""
+
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -50,3 +50,37 @@ plt.ylabel('Prix de clôture (€)')
 plt.xlabel('Date')
 plt.grid()
 plt.show()
+"""
+
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+
+# Sélectionner le ticker
+tickers = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA", "AAPL", "GOOG"])
+
+# Téléchargement des données historiques
+data = yf.download(tickers, start="2000-01-01", end="2023-12-31")
+
+# Vérification de l'intégrité des données
+st.write(data.head())
+
+# Supprimer les colonnes inutiles (si elles existent)
+if "Dividends" in data.columns:
+    data = data.drop(columns=["Dividends", "Stock Splits"])
+
+# Afficher le graphique de prix de clôture avec Streamlit
+st.line_chart(data['Close'])
+
+# Créer un graphique avec Matplotlib pour plus de personnalisation
+plt.figure(figsize=(10, 6))
+plt.plot(data['Close'], label='Prix de clôture')
+plt.title(f'Évolution du prix de clôture pour {tickers}')
+plt.ylabel('Prix de clôture (€)')
+plt.xlabel('Date')
+plt.grid()
+
+# Affichage dans Streamlit avec st.pyplot()
+st.pyplot(plt)

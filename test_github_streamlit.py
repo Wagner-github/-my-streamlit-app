@@ -39,9 +39,6 @@ ticker = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA", "AAPL", "GOOG
 # Télécharger les données boursières
 data = yf.download(ticker, start="2019-01-01", end="2023-12-31")
 
-# Vérifier les données
-st.write(data.head())
-
 # Afficher le graphique de prix de clôture
 st.line_chart(data['Close'])
 

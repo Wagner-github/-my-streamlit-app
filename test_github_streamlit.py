@@ -56,10 +56,10 @@ import numpy as np
 import streamlit as st
 
 # Sélectionner le ticker
-Total = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA", "AAPL", "GOOG"])
+Tickers = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA", "AAPL", "GOOG"])
 
 # Téléchargement des données historiques pour TotalEnergies
-#Total = yf.Ticker("TTE.PA")
+Total = yf.download(tickers, start="2010-01-01", end="2023-12-31")
 
 # Création du DataFrame
 df = Total.history(start="2000-01-01")

@@ -58,7 +58,7 @@ import numpy as np
 import streamlit as st
 
 # Sélectionner le ticker
-tickers = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA","OR.PA", "AAPL", "GOOG"])
+tickers = st.selectbox("Sélectionnez une entreprise :", ["TTE.PA","OR.PA", "AAPL"])
 
 # Téléchargement des données historiques
 data = yf.download(tickers, start="2000-01-01", end="2023-12-31")

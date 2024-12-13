@@ -68,7 +68,7 @@ for col in df.columns:
     percent_missing = np.mean(df[col].isnull())
 
 # Afficher le graphique de prix de clôture
-st.line_chart(data['Close'])
+st.line_chart(df['Close'])
 
 df['Close'].plot(figsize=(10, 6), title='Évolution du prix de clôture')
 plt.ylabel('Prix de clôture (€)')

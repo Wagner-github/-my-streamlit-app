@@ -74,13 +74,4 @@ if "Dividends" in data.columns:
 # Afficher le graphique de prix de clôture avec Streamlit
 st.line_chart(data['Close'])
 
-# Créer un graphique avec Matplotlib pour plus de personnalisation
-plt.figure(figsize=(10, 6))
-plt.plot(data['Close'], label='Prix de clôture')
-plt.title(f'Évolution du prix de clôture pour {tickers}')
-plt.ylabel('Prix de clôture (€)')
-plt.xlabel('Date')
-plt.grid()
 
-# Affichage dans Streamlit avec st.pyplot()
-st.pyplot(plt)
